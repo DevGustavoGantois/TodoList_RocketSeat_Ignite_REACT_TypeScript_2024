@@ -1,0 +1,99 @@
+Projeto TodoList
+Desenvolvido durante o curso RocketSeat | Ignite
+
+---------------------------------------------------------------------
+
+Data: 25/07/2024
+
+Autor: Gustavo Gantois Caria Carvalho
+
+Tecnologias utilizadas: React | TypeScript | CSS
+
+---------------------------------------------------------------------
+
+Explicação de cada parte do projeto
+Arquivo -> APP.TSX
+Definição da interface TaskProps:
+
+Define as propriedades das tasks como id: string, title: string, e isCompleted: boolean.
+Strings são conjuntos de caracteres.
+Utilização de const:
+
+Define variáveis imutáveis.
+Gerenciamento de estado com useState():
+
+Em TypeScript, todos os tipos devem ser declarados explicitamente.
+Passa as props do TaskProps usando <TaskProps[]>, criando um array onde as tasks serão armazenadas.
+Função addTask(taskTitle: string):
+
+Responsável por adicionar tasks ao TodoList.
+Utiliza setTasks para atualizar o estado, com o spread operator para desestruturar as tasks existentes.
+Gera IDs únicos usando a biblioteca UUID.
+Define title como taskTitle e isCompleted como false.
+Função deleteTaskById(taskId: string):
+
+Recebe taskId como string.
+Filtra tasks, mantendo aquelas cujo task.id é diferente de taskId.
+Função toggleTaskCompletedById(taskId: string):
+
+Utiliza map para iterar sobre as tasks.
+Altera isCompleted para true ou false conforme necessário.
+Renderização no JSX:
+
+O Header recebe a função onAddTask, que adiciona tasks.
+O componente Tasks recebe as tasks, a lógica de exclusão (onDelete), e a lógica de completude (onComplete).
+Arquivo -> Header.TSX
+Definição da interface Props:
+
+Define onAddTask que recebe taskTitle e retorna void.
+Gerenciamento de estado com useState(""):
+
+Inicializa com uma string vazia.
+Função handleSubmit(event: FormEvent):
+
+Recebe um evento de formulário.
+Utiliza preventDefault() para evitar o comportamento padrão do formulário.
+Lógica de adição de tasks:
+
+onAddTask recebe o title, que é o conteúdo da task.
+Limpa o input após o envio com setTitle('').
+Função onChangeTitle(event: ChangeEvent<HTMLInputElement>):
+
+Lida com mudanças no input.
+Renderização no JSX:
+
+O formulário utiliza onSubmit para enviar as tasks, chamando handleSubmit.
+Arquivo -> Task.TSX
+Definição da interface Props:
+
+task recebe TaskProps.
+onDelete e onComplete recebem taskId como string e retornam void.
+Desestruturação de Props:
+
+Desestrutura task, onDelete, e onComplete.
+Renderização condicional com operador ternário:
+
+Exibe task.title de forma desestruturada.
+Botões de completar e deletar:
+
+onComplete chama task.id.
+onDelete também chama task.id.
+Arquivo -> Tasks.TSX
+Definição da interface Props:
+
+tasks recebe um array de TaskProps.
+onDelete e onComplete recebem id como string e retornam void.
+Desestruturação de Props:
+
+Desestrutura tasks, onDelete, e onComplete.
+Cálculo da quantidade de tasks:
+
+const tasksQuantity utiliza tasks.length para contar as tasks.
+Filtragem de tasks completadas:
+
+const completedTasks utiliza filter e isCompleted para contar tasks completadas.
+Renderização no JSX:
+
+Exibe tasksQuantity e completedTasks.
+tasks.map renderiza cada task, passando task, key, onDelete, e onComplete ao componente Task.
+Renderiza um HTML padrão se tasks.length for menor ou igual a 0.
